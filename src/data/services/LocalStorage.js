@@ -33,49 +33,49 @@ export const LocalStorage = {
     });
   },
 
-  deleteTodoItemFromLocalStorage: (todoItemId) => {
-    return new Promise((resolve, reject) => {
-      LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
-        const updatedTodoItems = todoItems.filter(item => item.id !== todoItemId);
-        localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(updatedTodoItems));
-        resolve();
-      }).catch((error) => {
-        reject(error);
-      });
-    });
-  },
-
-  toggleTodoItemInLocalStorage: (todoItemId) => {
-    return new Promise((resolve, reject) => {
-      LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
-        const updatedTodoItems = todoItems.map((item) => {
-          if (item.id === todoItemId) {
-            return { ...item, isDone: !item.isDone };
-          }
-          return item;
+    deleteTodoItemFromLocalStorage: (todoItemId) => {
+      return new Promise((resolve, reject) => {
+        LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
+          const updatedTodoItems = todoItems.filter(item => item.id !== todoItemId);
+          localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(updatedTodoItems));
+          resolve();
+        }).catch((error) => {
+          reject(error);
         });
-        localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(updatedTodoItems));
-        resolve();
-      }).catch((error) => {
-        reject(error);
       });
-    });
-  },
+    },
 
-  updateTodoPriorityInLocalStorage: (todoItemId, newPriority) => {
-    return new Promise((resolve, reject) => {
-      LocalStorage.getTodoItemsFromLocalStorage()
-        .then((todoItems) => {
+    toggleTodoItemInLocalStorage: (todoItemId) => {
+      return new Promise((resolve, reject) => {
+        LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
           const updatedTodoItems = todoItems.map((item) => {
             if (item.id === todoItemId) {
-              return { ...item, priority: newPriority };
+              return { ...item, isDone: !item.isDone };
             }
             return item;
           });
           localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(updatedTodoItems));
           resolve();
-        }).catch(reject);
-    });
-  }
+        }).catch((error) => {
+          reject(error);
+        });
+      });
+    },
 
+    updateTodoPriorityInLocalStorage: (todoItemId, newPriority) => {
+      return new Promise((resolve, reject) => {
+        LocalStorage.getTodoItemsFromLocalStorage()
+          .then((todoItems) => {
+            const updatedTodoItems = todoItems.map((item) => {
+              if (item.id === todoItemId) {
+                return { ...item, priority: newPriority };
+              }
+              return item;
+            });
+            localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(updatedTodoItems));
+            resolve();
+          })
+          .catch(reject);
+      });
+    }
 }

@@ -1,4 +1,4 @@
-export function TodoItem(id, title, isDone) {
+export function TodoItem(id, title, isDone, priority) {
   this.id = id;
   this.title = title;
   this.isDone = isDone;

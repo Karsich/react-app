@@ -11,6 +11,8 @@ const checkedCss = css`
 
 const Title = styled.span`
   flex: 1;
+  padding: 0 10px;
+  display: flex;
   align-items: center;
   font-size: 15px;
   ${props => (props.isDone ? checkedCss : "")};
@@ -80,7 +82,6 @@ export const TodoItem = ({ id, title, isDone, priority }) => {
        <TodoItemCheckbox checked={isDone} onClick={handleCheckboxClick} />
         <Title checked={isDone}>{title}</Title>
       <PriorityButton priority={priority} onClick={handlePriorityClick}>
-        {priority}
       </PriorityButton>
       <Delete onClick={handleDelete} />
     </TodoItemContainer>
