@@ -7,7 +7,7 @@ import {SearchInput} from './components/SearchInput';
 
 export const TodoItems = () => {
   const [searchValue, setSearchValue] = useState('');
-
+  const [isSorted, setIsSorted] = useState(false);
   const {data: todoItems, isLoading} = useData();
 
   if (!todoItems || isLoading) {
@@ -18,20 +18,20 @@ export const TodoItems = () => {
     );
   }
 
-  // Фукнция filter вызывает для каждого элемента переданный ей колбек
-  // И формирует в filteredBySearchItems новый массив элементов, для которых колбек вернул true
-  // Для проверки вхождения подстроки в строку нужно использовать indexOf
+
   const filteredBySearchItems = todoItems.filter((todoItem) => {
-    // const clearedTodoItemTitle = очистка от пробелов + приведение к одному из регистров
-    // const clearedSearchValue = очистка от пробелов + приведение к одному из регистров
-    // const isSearched = проверка вхождения строки поиска в строку заголовка
-    // return isSearched
-    return true; // удалить после реализации фильтрации
+      const clearedTodoItemTitle = todoItem.title.replace(/\s+/g, '').toLowerCase();
+      const clearedSearchValue = searchValue.replace(/\s+/g, '').toLowerCase();
+      if (clearedSearchValue.length >= 3) return clearedTodoItemTitle.includes(clearedSearchValue)
+      else return true;
   })
 
+  const sortedItems = isSorted
+      ? [...filteredBySearchItems].sort((a, b) => b.priority - a.priority)
+      : filteredBySearchItems;
 
   const todoItemsElements = filteredBySearchItems.map((item, index) => {
-    return <TodoItem key={item.id} title={item.title} checked={item.isDone} />;
+    return <TodoItem key={item.id} title={item.title} checked={item.isDone} priority={item.priority || 1}/>;
   });
 
   return (

@@ -27,6 +27,6 @@ export const CheckboxContainer = styled.span(props => {
 });
 
 
-export const TodoItemCheckbox = ({disabled, checked}) => {
-  return <CheckboxContainer disabled={disabled} checked={checked} />
-}
+export const TodoItemCheckbox = ({ disabled, checked, onClick }) => {
+  return <CheckboxContainer disabled={disabled} checked={checked} onClick={onClick} />;
+};
