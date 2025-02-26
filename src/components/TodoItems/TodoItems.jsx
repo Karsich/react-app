@@ -22,12 +22,12 @@ export const TodoItems = () => {
        const clearedTodoItemTitle = todoItem.title.trim().toLowerCase()
        const clearedSearchValue = searchValue.trim().toLowerCase()
        const isSearched = clearedTodoItemTitle.indexOf(clearedSearchValue)
-       return (isSearched!==-1)
+       return (isSearched!==-1 || clearedSearchValue.length<3)
   })
 
 
   const todoItemsElements = filteredBySearchItems.map((item, index) => {
-    return <TodoItem key={item.id} title={item.title} checked={item.isDone} />;
+    return <TodoItem id={item.id} title={item.title} checked={item.isDone} />;
   });
 
   return (

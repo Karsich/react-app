@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const Root = styled.div`
   display: flex;
+  overflow-wrap: anywhere;
   flex-direction: column;
   gap: 16px;
 `;

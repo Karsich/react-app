@@ -31,5 +31,22 @@ export const useSaveNewTodoItem = () => {
     mutate,
     isPending,
     isSuccess
-  }
-}
+    };
+};
+
+export const useDeleteTodoItem = () => {
+    const client = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: ({ id }) => {
+            LocalStorage.deleteTodoItemFromLocalStorage(id);
+        },
+        onSuccess: () => {
+            client.invalidateQueries(['todo']);
+        },
+    });
+
+    return {
+        mutate
+    };
+};

@@ -7,7 +7,6 @@ import {useSaveNewTodoItem} from '../../data/hooks/useData';
 
 const Input = styled.input`
   flex-grow: 1;
-
   &::placeholder {
     font-size: 15px;
     color: rgba(63,63,63,0.6);
@@ -46,7 +45,7 @@ export const NewTodoItem = () => {
 
   return (
     <TodoItemContainer>
-      <TodoItemCheckbox disabled={false} />
+      <TodoItemCheckbox disabled={true} />
       <Input 
         ref={inputRef}
         value={value}
