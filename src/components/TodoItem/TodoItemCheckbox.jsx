@@ -16,7 +16,7 @@ const checkedCss = css`
 export const CheckboxContainer = styled.span(props => {
   return `
     display: inline-block;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
     border: 2px solid #C4C4C4;
     border-radius: 15px;

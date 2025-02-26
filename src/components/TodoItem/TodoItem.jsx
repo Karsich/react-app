@@ -18,7 +18,7 @@ const Title = styled.span(props => {
 
 const Delete = styled.span`
   display: inline-block;
-  width: 13px;
+  min-width: 13px;
   height: 13px;
   background-image: url(assets/images/png/delete.png);
   background-position: center;
