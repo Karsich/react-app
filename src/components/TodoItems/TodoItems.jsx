@@ -18,15 +18,11 @@ export const TodoItems = () => {
     );
   }
 
-  // Фукнция filter вызывает для каждого элемента переданный ей колбек
-  // И формирует в filteredBySearchItems новый массив элементов, для которых колбек вернул true
-  // Для проверки вхождения подстроки в строку нужно использовать indexOf
   const filteredBySearchItems = todoItems.filter((todoItem) => {
-    // const clearedTodoItemTitle = очистка от пробелов + приведение к одному из регистров
-    // const clearedSearchValue = очистка от пробелов + приведение к одному из регистров
-    // const isSearched = проверка вхождения строки поиска в строку заголовка
-    // return isSearched
-    return true; // удалить после реализации фильтрации
+       const clearedTodoItemTitle = todoItem.title.trim().toLowerCase()
+       const clearedSearchValue = searchValue.trim().toLowerCase()
+       const isSearched = clearedTodoItemTitle.indexOf(clearedSearchValue)
+       return (isSearched!==-1)
   })
 
 

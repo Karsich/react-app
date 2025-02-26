@@ -19,7 +19,8 @@ export const CheckboxContainer = styled.span(props => {
     width: 20px;
     height: 20px;
     border: 2px solid #C4C4C4;
-    border-radius: 6px;
+    border-radius: 15px;
+    border-color: #00FF00;
     cursor: pointer;
     ${props.disabled ? disabledCss : ''}
     ${props.checked ? checkedCss : ''}

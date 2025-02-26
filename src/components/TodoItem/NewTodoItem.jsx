@@ -46,7 +46,7 @@ export const NewTodoItem = () => {
 
   return (
     <TodoItemContainer>
-      <TodoItemCheckbox disabled={true} />
+      <TodoItemCheckbox disabled={false} />
       <Input 
         ref={inputRef}
         value={value}
