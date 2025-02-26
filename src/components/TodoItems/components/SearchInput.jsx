@@ -7,8 +7,8 @@ const Input = styled.input``;
 // Разобраться, почему не срабатывает ввод символов в строку
 export const SearchInput = ({value, setValue}) => {
   const onInputChange = (event) => {
-    if (setValue) { 
-      setValue(event.nativeEvent.target.value);
+    if (setValue) {
+      setValue(event.target.value);
     }
   }
 
