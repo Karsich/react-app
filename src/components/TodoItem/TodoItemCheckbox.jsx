@@ -12,6 +12,12 @@ const checkedCss = css`
   background-repeat: no-repeat;
 `;
 
+
+const priorityDefault = css`
+  border-color: #c4c4c4; // Серый цвет обводки
+  background-color: #f0f0f0; // Серый цвет фона
+`;
+
 const priorityLow = css`
   border-color: #00cc00; // Зеленая обводка
   background-color: #aaffaa; // Зеленый фон
@@ -37,6 +43,7 @@ export const CheckboxContainer = styled.span((props) => {
     cursor: pointer;
     ${props.disabled ? disabledCss : ""}
     ${props.checked ? checkedCss : ""}
+    ${props.priority === "default" ? priorityDefault : ""}
     ${props.priority === "low" ? priorityLow : ""}
     ${props.priority === "medium" ? priorityMedium : ""}
     ${props.priority === "high" ? priorityHigh : ""}
@@ -46,24 +53,23 @@ export const CheckboxContainer = styled.span((props) => {
 export const TodoItemCheckbox = ({ id, disabled, checked, priority }) => {
   const { mutate: updateTodoItem } = useUpdateTodoItem();
 
-  // Обработчик для левого клика (изменение статуса задачи)
   const handleCheckbox = () => {
     if (!disabled) {
       updateTodoItem({ id, checked: !checked, priority });
     }
   };
 
-  // Обработчик для правого клика (изменение приоритета)
   const handleRightClick = (event) => {
-    event.preventDefault(); // Предотвращаем появление контекстного меню браузера
+    event.preventDefault();
     if (!checked || disabled) {
-      // Циклически меняем приоритет: low → medium → high → low
       const newPriority =
-        priority === "low"
-          ? "medium"
-          : priority === "medium"
-          ? "high"
-          : "low";
+        priority === "default"
+            ? "low"
+            : priority === "low"
+            ? "medium"
+            : priority === "medium"
+            ? "high"
+            : "default";
       updateTodoItem({ id, checked, priority: newPriority });
     }
   };
@@ -74,7 +80,7 @@ export const TodoItemCheckbox = ({ id, disabled, checked, priority }) => {
       checked={checked}
       priority={priority}
       onClick={handleCheckbox}
-      onContextMenu={handleRightClick} // Добавляем обработчик правого клика
+      onContextMenu={handleRightClick}
     />
   );
 };

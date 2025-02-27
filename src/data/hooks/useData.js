@@ -19,7 +19,7 @@ export const useSaveNewTodoItem = () => {
 
   const {mutate, isPending, isSuccess} = useMutation({
     mutationFn: ({title}) => {
-      const newTodoItem = new TodoItem(new Date().getTime(), title, false);
+      const newTodoItem = new TodoItem(new Date().getTime(), title, false, "default");
       return LocalStorage.saveTodoItemToLocalStorage(newTodoItem)
     },
     onSuccess: () => {

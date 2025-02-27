@@ -4,16 +4,7 @@ import { NewTodoItem } from "../TodoItem/NewTodoItem";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { useData } from "../../data/hooks/useData";
 import { SearchInput } from "./components/SearchInput";
-import styled from "styled-components";
-
-const SortButton = styled.button`
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
+import { SortButton } from "./components/SortButton"; // Импортируем SortButton
 
 export const TodoItems = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -35,7 +26,7 @@ export const TodoItems = () => {
 
   // Сортировка по приоритету
   const sortedItems = [...filteredBySearchItems].sort((a, b) => {
-    const priorityOrder = { default:0, low: 1, medium: 2, high: 3 };
+    const priorityOrder = { default: 0, low: 1, medium: 2, high: 3 };
 
     if (sortOrder === "ascending") {
       return priorityOrder[a.priority] - priorityOrder[b.priority];
@@ -67,14 +58,7 @@ export const TodoItems = () => {
 
   return (
     <TodoItemsContainer>
-      <SortButton onClick={handleSort}>
-        Сортировать:{" "}
-        {sortOrder === "default"
-          ? "По умолчанию"
-          : sortOrder === "ascending"
-          ? "По возрастанию"
-          : "По убыванию"}
-      </SortButton>
+      <SortButton sortOrder={sortOrder} onSort={handleSort} /> {/* Используем SortButton */}
       <SearchInput value={searchValue} setValue={setSearchValue} />
       {todoItemsElements}
       <NewTodoItem />
