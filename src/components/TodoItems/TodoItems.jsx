@@ -27,7 +27,7 @@ export const TodoItems = () => {
 
 
   const todoItemsElements = filteredBySearchItems.map((item, index) => {
-    return <TodoItem id={item.id} key={item.id} title={item.title} checked={item.isDone} />;
+    return <TodoItem id={item.id} key={item.id} title={item.title} checked={item.isDone} priority={item.priority} />;
   });
 
   return (

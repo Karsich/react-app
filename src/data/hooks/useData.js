@@ -38,8 +38,8 @@ export const useUpdateTodoItem = () => {
   const client = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationFn: ({ id, checked }) => {
-      return LocalStorage.updateTodoItemInLocalStorage(id, checked);
+    mutationFn: ({ id, checked, priority }) => {
+      return LocalStorage.updateTodoItemInLocalStorage(id, checked, priority);
     },
     onSuccess: () => {
       client.invalidateQueries(['todo']);

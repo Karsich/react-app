@@ -27,12 +27,12 @@ const Delete = styled.span`
   cursor: pointer;
 `;
 
-export const TodoItem = ({ id, title, checked }) => {
+export const TodoItem = ({ id, title, checked, priority }) => {
   const { mutate: deleteTodoItem } = useDeleteTodoItem();
 
   const handleDelete = () => {
     // eslint-disable-next-line no-restricted-globals
-    const isDelete = confirm(`Удалить элемент "${title}" (ID: ${id})?`);
+    const isDelete = confirm(`Удалить элемент "${title}" (ID: ${id}, приоритет: ${priority})?`);
     if (isDelete) {
       deleteTodoItem({ id });
     }
@@ -40,7 +40,7 @@ export const TodoItem = ({ id, title, checked }) => {
 
   return (
     <TodoItemContainer>
-      <TodoItemCheckbox checked={checked} id={id} disabled={false} />
+      <TodoItemCheckbox checked={checked} id={id} disabled={false} priority={priority}/>
       <Title checked={checked}>
         {title}
       </Title>
